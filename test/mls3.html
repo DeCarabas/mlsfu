@@ -1,0 +1,3059 @@
+<!-- 
+****************
+Insert Printer Link on HTML (594)
+merges/MLSPrintOnHTML.htm
+05/17/0666 MF 
+03/12/2007 BT Virtual Earth map Enhancement
+****************
+-->
+
+<HTML>
+<HEAD>
+<script>
+var sLoginBaseURL = "http://loclogin.nwmls.com/";
+var iPictureContextMenu = "1";
+
+function getPictureContextMenuFlag(isPrimary)
+{
+	var flag = 0;
+	switch(iPictureContextMenu)
+	{
+		case "0" : flag = 0;
+		break
+		case "1" : flag = 1;
+		break
+		case "2" : flag = 1; 
+		break
+		case "3" : if(isPrimary != 1) flag =  0; else flag =  1;
+		break
+		case "4" :if(isPrimary != 1) { flag =  0; } else { flag =  1; }
+		break
+	}
+	return flag;
+}
+
+function ViewPicture(nPictureWidth, sPictureFilename, isPrimary)
+{
+
+	var flag = getPictureContextMenuFlag(isPrimary);
+	var myWidth = nPictureWidth + 40
+	var myHeight = myWidth * .75
+	var myTop = (window.screen.height - myHeight)/2
+	var myLeft = (window.screen.width - myWidth)/2
+	var path = sLoginBaseURL+'/PictureHolder.html?PictureFilename=' + sPictureFilename + '&flag =' + flag;
+	popupWin = window.open(path ,'remote', 'menubar=no,toolbar=no,resizable=yes,directories=no,scrollbars=no,status=no,height=' + myHeight + ',width=' + myWidth + ',left=' + myLeft + ',top=' + myTop);
+    popupWin.focus();
+}
+
+</script>
+<!-- 
+########################
+	Virtual Earth map
+########################
+-->
+<script language="JavaScript" src="http://dev.virtualearth.net/mapcontrol/v4/mapcontrol.js"></script> 
+<script language="JavaScript" src="http://locmedia.nwmls.com/MagicJs/MLSVirtualEarth.js?Arg=04-18-2008_12-44-20"></script>
+<script language="JavaScript">
+	var map = null;
+	var sRapMLSImages = "http://locmedia.nwmls.com/rapmlsimages/"
+	var mgMapPinFile = sRapMLSImages + '/VE_icons/VEMarker.gif';
+</script>
+
+
+<!-- 
+########################
+	Syntax for not printing the print hyperlink
+########################
+Changed by BT #RP 271485, 10/19/06
+Turn off a { display:none;} parameter in the @media print function
+-->
+<style type="text/css">
+@media print{
+  body{ background-color:#FFFFFF; background-image:none; color:#000000 }
+  #printLink{ display:none;}
+  #a{ display:none;}
+  #printPhoto{display:inline}
+  #SeeAddlPics{display:none;}
+}
+.sBlueLink {
+	font-size : 8pt;
+	font-weight : normal;
+	color : #0161FC;
+	font-family : arial;
+	text-decoration : underline;
+}
+.sBlueLink:hover
+{
+	font-size : 8pt;
+	font-weight : normal;
+	color : #A80000;
+	font-family : arial;
+	text-decoration : underline;
+}
+</style>
+<!-- 
+########################
+	Script for keeping the print link on top
+########################
+-->
+<SCRIPT>
+
+function window.onload() 
+{
+	LoadMaps();//Virtual Earth map
+	GetMap (15);//Virtual Earth for single map
+}
+
+var objTheLink = null;
+function moveLink()
+{
+	objTheLink.style.top = document.body.scrollTop;
+}
+function initLink(obj)
+{
+	objTheLink = obj;
+}
+</SCRIPT>
+</HEAD>
+<!-- 
+########################
+	Note onscroll event handler for Body
+########################
+-->
+<BODY onscroll="moveLink();">
+
+<SCRIPT LANGUAGE="JavaScript"><!-- self.focus(); //--> </SCRIPT>
+<!-- 
+########################
+	Add this at top of report output
+########################
+-->
+<DIV id="printLink" style="position:absolute;top:8;right:8; padding: 8px; background-color: white"> <A class="sBlueLink" HREF="javascript://#print" onclick="javascript:print()"><IMG src="http://locmedia.nwmls.com/rapmlsimages/print.gif" border=0 valign=bottom>&nbsp;Print this page</A></DIV>
+<SCRIPT LANGUAGE="JavaScript">initLink(document.getElementById('printLink'));</SCRIPT>
+<!-- 
+########################
+	End code top of report output
+########################
+-->
+</BODY>
+</HTML><!-- MLS Northwest Reports (502)-->
+<HTML>
+	<HEAD>
+		<META name="Rapattoni Corporation" content="Magic 9 Web MLS">
+		<TITLE>MLS Northwest Reports (502)</TITLE>
+		<!-- AA 1/17/03 -->
+		<!-- This merge form and program (502) is custom built for NWMLS only! -->
+		<STYLE TYPE="text/css">
+			@media print
+			{
+			a{display:inline;}
+			}
+			<BODY>
+			{   margin:0;
+			font-family: arial;
+			font-size: 8pt;
+			line-spacing: 1;
+			vertical-align: top;
+			padding-top: 0px;
+			padding-bottom: 0px
+			}
+
+			/* the anchor below overrides 
+			the print style sheet which hides hyperlinks */
+			TD
+			{
+			font-family: arial;
+			font-size: 8pt;
+			line-spacing: 1;
+			vertical-align: top;
+			padding-top: 0px;
+			padding-bottom: 0px
+			}
+			TABLE
+			{
+			padding-top: 0px;
+			padding-bottom: 0px;
+			padding-left: 1px;
+			padding-right: 0px
+			}
+			INPUT
+			{
+			height: 14pt
+			}
+			H3
+			{
+			font-family: arial;
+			font-size: 14pt;
+			}
+			.14
+			{
+			font-family: arial;
+			font-size: 14pt;
+			}
+			.13
+			{
+			font-family: arial;
+			font-size: 13pt;
+			}
+			.6
+			{
+			font-family: arial;
+			font-size: 6pt;
+			}
+			.pagebreak
+			{
+			page-break-before: always
+			}
+			.bottom-line
+			{
+			border-left: none;
+			border-right: none;
+			border-top: none;
+			border-bottom: solid;
+			border-bottom-width: 0.1em;
+			border-color: black;
+			}
+			.box
+			{
+			border-left: solid;
+			border-right: solid;
+			border-top: solid;
+			border-bottom: solid;
+			border-left-width: thin;
+			border-right-width: thin;
+			border-top-width: thin;
+			border-bottom-width: thin;
+			border-color: black;
+			}
+		</STYLE>
+	</HEAD>
+	<BODY bgcolor="white" text="black">
+
+		<SCRIPT LANGUAGE="JavaScript">
+		<!-- self.focus(); //--> 
+		</SCRIPT>
+
+		<CENTER>
+						<!-- *******************************
+			For Email Report
+			***********************************-->
+			<TABLE border="0" width="100%" cellpadding="3" cellspacing="0">
+				<TR align="center">
+					<TD bgcolor="#004080"><IMG src="http://locmedia.nwmls.com/nwmls/officepics/7928.jpg" align="bottom"></TD>
+				</TR>
+				<TR height="2" bgcolor="white"></TR>
+			</TABLE>
+			<TABLE width="100%" border="0" >
+				<TR>
+					<TD>
+						<TABLE border="0" width="100%" cellpadding="1">
+							<TR>
+								<TD nowrap rowspan="4" width="10%"><FONT face="Arial" size="1"><IMG src="http://locmedia.nwmls.com/nwmls/agentpics/800128988.jpg" width="76" ></FONT></TD>
+								<td align="center">
+									<table width="90%" cellpadding="1" cellspacing="1" border="0" style="padding:3px">
+									<tr>
+										<TD nowrap width="*"><FONT><B>Presented By:</B> </FONT></TD>
+										<TD nowrap width="*"><FONT>Shannon Campbell</FONT></TD>
+										<TD nowrap width="90%">&nbsp;</TD>
+										<TD nowrap width="*"><FONT><B>Office:</B> </FONT></TD>
+										<TD nowrap width="*"><FONT>Lake & Company</FONT></TD>
+									</TR>
+									<TR>
+										<TD nowrap><B>Phone:</B></TD>
+										<TD nowrap>206-799-0010</TD>
+										<TD nowrap>&nbsp;</TD>
+										<TD nowrap>&nbsp;</TD>
+										<TD nowrap>7801 Green Lake Dr N</TD>
+									</TR>
+									<TR>
+										<TD nowrap><B>E-mail:</B></TD>
+										<TD nowrap>shannon@lakere.com</TD>
+										<TD nowrap>&nbsp;</TD>
+										<TD nowrap>&nbsp;</TD>
+										<TD nowrap>Seattle WA 98103</TD>
+									</TR>
+									<TR>
+										<TD nowrap><B>Web Page</B>: </TD>
+										<TD nowrap>http://www.shannoncampbell.com</TD>
+										<TD nowrap>&nbsp;</TD>
+										<TD nowrap>&nbsp;</TD>
+										<TD nowrap>206-527-1777</TD>
+									</TR>
+								</table>
+								</td>
+							</tr>
+						</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+						
+						<!--******************* -->
+			<!-- RESI CLIENT DETAIL -->
+			<!-- ****************** -->
+															<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD align="center"><H3>Residential Client Detail Report</H3></TD>
+					</TR>
+											<TR>
+							<TD width="100%"></TD>
+						</TR>
+											<TR>
+							<TD>Listings as of 05/26/08 at 6:24pm</TD>
+						</TR>
+				</TABLE>
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD colspan="2">
+							<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD>
+										<TABLE  border="0" width="100%" cellspacing="0" cellpadding="0">
+											<TR>
+												<TD nowrap width="20%"><B>Lot:&nbsp;</B></TD>
+												<TD nowrap width="20%"><B>Unit #:&nbsp;</B></TD>
+												<TD nowrap width="20%"><B>20624 W Richmond Dr&nbsp;Bothell&nbsp;98021</B></TD>
+												<TD nowrap width="20%"><B></B></TD>
+																									<TD nowrap align="right" width="25%" color="Blue"><A href="http://locsearch.nwmls.com//ReturnMap.aspx?hidMLS=NWML&VHW=47.810570:-122.231651:.25:&Z=4&H=300&W=400&PP=47.810570:-122.231651:1:028078706" target=Window><FONT face="arial" size="1" color="blue"><B>See Map</B></FONT></A></TD>
+																							</TR>
+										</TABLE>
+									</TD>
+								</TR>
+							</TABLE>
+						</TD>
+					</TR>
+					<TR>
+					<TD width="30%">
+						<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+								<TD nowrap valign="top" width="25%"><A href="javascript://#LookUp" onclick="javascript:var myWidth = 400 + 40;var myHeight = myWidth * .75;var myTop = (window.screen.height - myHeight)/2;var myLeft = (window.screen.width - myWidth)/2;var oPictureWindow=window.open('http://locmedia.nwmls.com/DO_NOT_LINK/bigphoto/706/28078706.jpg?tsp=20080509135104', 'newWin', 'menubar=no,toolbar=no,resizable=yes,directories=no,scrollbars=yes,status=no,height=' + myHeight + ',width=' + myWidth + ',left=' + myLeft + ',top=' + myTop);oPictureWindow.focus();"><IMG width="300" height="199" src="http://locmedia.nwmls.com/DO_NOT_LINK/bigphoto/706/28078706.jpg?tsp=20080509135104" border="0"></A></TD>
+							</TR>
+																			<TR height="20">
+								<TD nowrap width="20%"><A href="/scripts/mgrqispi.dll?APPNAME=Locator&PRGNAME=MLSPictureDescriptions&ARGUMENTS=-N375489034,-N28078706,-AE"  target="window"><FONT face="arial" size="1" color="blue"><B>See Additional Pictures</B></FONT></A></TD>
+							</TR>
+												</TABLE>
+					</TD>
+					<TD>
+						<TABLE width="100%" cellspacing="0" cellpadding="0">
+							<TR>
+								<TD colspan="2">
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>Status</B></TD>
+														<TD>Active</TD>
+													</TR>
+													<TR>
+														<TD><B>Listing#</B></TD>
+														<TD> 28078706</TD>
+													</TR>
+													<TR>
+														<TD><B>County</B></TD>
+														<TD>Snohomish</TD>
+													</TR>
+												</TABLE>
+											</TD>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>Beds</B></TD>
+														<TD>3</TD>
+													</TR>
+													<TR>
+														<TD><B>Baths</B></TD>
+														<TD>  2.50</TD>
+													</TR>
+													<TR>
+														<TD><B>Fireplaces</B></TD>
+														<TD>2</TD>
+													</TR>
+												</TABLE>
+											</TD>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>List Price</B></TD>
+														<TD align="right">      500,000</TD>
+													</TR>
+													<TR>
+														<TD><B>Sold Price</B></TD>
+														<TD align="right"></TD>
+													</TR>
+													<TR>
+														<TD><B>Year Built</B></TD>
+														<TD align="right">1984</TD>
+													</TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+									<HR size="1">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Style</B></TD>
+											<TD>12-2 Story</TD>
+										</TR>
+										<TR>
+											<TD><B>Bldg Type.</B></TD>
+											<TD>Built On Lot</TD>
+										</TR>
+										<TR>
+											<TD><B>Covd Prkg.</B></TD>
+											<TD>2         Garage-Detached</TD>
+										</TR>
+										<TR>
+											<TD><B>Project</B></TD>
+											<TD></TD>
+										</TR>
+										<TR>
+											<TD><B>New Const.</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Appx. SQFT</B></TD>
+											<TD align="right">     2618</TD>
+										</TR>
+										<TR>
+											<TD><B>SQFT Src.</B></TD>
+											<TD align="right">Sno. Co. Records</TD>
+										</TR>
+										<TR>
+											<TD><B>Acreage</B></TD>
+											<TD align="right">    1.400</TD>
+										</TR>
+										<TR>
+											<TD><B>Lot Size</B></TD>
+											<TD align="right">    60984</TD>
+										</TR>
+										<TR>
+											<TD></TD>
+											<TD align="right"></TD>
+										</TR>
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD colspan="2">
+									<TABLE></TABLE>
+									<HR size="1">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD colspan="2"><B>School Information:</B></TD>
+										</TR>
+										<TR>
+											<TD nowrap><B>School District</B></TD>
+											<TD>Edmonds</TD>
+										</TR>
+										<TR>
+											<TD><B>Elementary</B></TD>
+											<TD>Hilltop ElemHt</TD>
+										</TR>
+										<TR>
+											<TD><B>Jr. High</B></TD>
+											<TD>Brier Terrace Mid</TD>
+										</TR>
+										<TR>
+											<TD><B>High School</B></TD>
+											<TD>Mountlake Terrace Hi</TD>
+										</TR>
+									</TABLE>
+								</TD>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Area</B></TD>
+											<TD>610</TD>
+										</TR>
+										<TR>
+											<TD><B>Community</B></TD>
+											<TD>North Bothell</TD>
+										</TR>
+										<TR>
+											<TD><B>Map:</B></TD>
+											<TD>456</TD>
+										</TR>
+										<TR>
+											<TD><B>Grid:</B></TD>
+											<TD>B-6</TD>
+										</TR>
+										<TR>
+											<TD><B>Pool</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+					</TD>
+				</TABLE>
+				<HRsize="1">
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD width="20%">
+							<TABLE width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD colspan="4" align="center"><B><U>Room Locations</U></B></TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD><B>L</B></TD>
+									<TD><B>M</B></TD>
+									<TD><B>U</B></TD>
+								</TR>
+								<TR>
+									<TD><B>Bedrooms</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>3</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (Full)</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>2</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (3/4)</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (1/2)</B></TD>
+									<TD></TD>
+									<TD>1</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Dining</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Living</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Kitchen</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>KtnEatSp</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Master</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>X</TD>
+								</TR>
+								<TR>
+									<TD><B>Family</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Rec. Room</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Den/Office</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Fireplace</B></TD>
+									<TD></TD>
+									<TD>1</TD>
+									<TD>1</TD>
+								</TR>
+								<TR>
+									<TD><B>Utility</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>ExFinRoom</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Entry</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Bonus Room</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+							</TABLE>
+						</TD>
+						<TD>
+							<TABLE width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD align="center" colspan="4"><B><U>Property Details</U></B></TD>
+								</TR>
+								<TR>
+									<TD><B>Heating/Cooling</B></TD>
+									<TD colspan="5">Baseboard, Wall</TD>
+								</TR>
+								<TR>
+									<TD><B>Energy Source</B></TD>
+									<TD colspan="5">Electric</TD>
+								</TR>
+								<TR>
+									<TD><B>Terms</B></TD>
+									<TD colspan="5">Cash Out, Conventional</TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>Exterior</B></TD>
+									<TD colspan="5">Wood</TD>
+								</TR>
+								<TR>
+									<TD><B>Roof Type</B></TD>
+									<TD colspan="5">Composition</TD>
+								</TR>
+								<TR>
+									<TD><B>Water</B></TD>
+									<TD colspan="5">Public</TD>
+								</TR>
+								<TR>
+									<TD><B>Sewer</B></TD>
+									<TD colspan="5">Septic</TD>
+								</TR>
+								<TR>
+									<TD><B>Floor Covering</B></TD>
+									<TD colspan="5">Ceramic Tile, Vinyl, Wall to Wall Carpet, See Remarks</TD>
+								</TR>
+								<TR>
+									<TD><B>Appliances</B></TD>
+									<TD colspan="5">Dishwasher, Dryer, Garbage Disposal, Range/Oven, Refrigerator, Washer</TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>View</B></TD>
+									<TD colspan="5">Mountain, Territorial</TD>
+								</TR>
+								<TR>
+									<TD><B>Basement</B></TD>
+									<TD colspan="5">None</TD>
+								</TR>
+								<TR>
+									<TD><B>Architecture</B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>Water Heater</B></TD>
+									<TD colspan="5">Electric/Mud room</TD>
+								</TR>
+								<TR>
+									<TD><B>Lease Equip.</B></TD>
+									<TD colspan="5">None</TD>
+								</TR>
+																<TR>
+									<TD><B>ApprvAssry Unit</B></TD>
+									<TD></TD>
+									
+									<TD>&nbsp;</TD>
+									<TD>&nbsp;</TD>
+									<TD><B>Bus Route</B></TD>
+									<TD></TD>
+								</TR>
+																							</TABLE>
+						</TD>
+					</TR>
+				</TABLE>
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Tax Year</B></TD>
+						<TD>2007</TD>
+						<TD align="right"><B>Annual Taxes</B></TD>
+						<TD>5314</TD>
+						<TD align="right"><B>Sr. Exemption</B></TD>
+						<TD>No</TD>
+						<TD align="right"><B>Homeowner Dues</B></TD>
+						<TD></TD>
+						<TD align="right"><B>Monthly Rent</B></TD>
+						<TD></TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Directions :&nbsp;</B>From 405 head south on Bothell-Everett Hwy. Turn right on 228th, then right on Meridian. Jog right on 216, then left again on Meridian. Turn right on W. Richmond. House on left, go up long driveway.</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Interior Features :&nbsp;</B>Bath Off Master, Built-In Vacuum, Ceiling Fan(s), Dining Room, Dble Pane/Strm Windw, Fireplace in Mstr BR, French Doors, Jetted/Soaking Tub, Walk-in Closet</TD>
+					</TR>
+				</TABLE>
+				<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Site Features :&nbsp;</B>Cable TV, Deck, RV Parking</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Marketing Remarks :&nbsp;</B>From the private lane to the mountain views off the wrap-around deck, this spacious 2-story is alive with charm. The kitchen is open to a wonderful family room with F/P and eating area. You'll delight in the spacious deck with incredible territorial views. Upstairs you'll find a master suite complete with F/P and sitting area so you can continue enjoying the view. The master bath has double sinks and soaking tub. There's walk-in closets in all the bedrooms. Even the utility room is spacious.</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellpadding="0" cellspacing="0">
+					<TR>
+						<TD nowrap align="center">Shannon Campbell  / Lake & Company</TD>
+					</TR>
+					<TR>
+						<TD nowrap align="center">Lot Sizes And Square Footage Are Estimates.</TD>
+					</TR>
+					<TR>
+						<TD  align="center">Information From Reliable Sources, But Not Guaranteed.<BR>Copyright</A> &copy;2008 <A name="trans">Rapattoni Corporation. All rights reserved.</A></TD>
+					</TR>
+					<TR>
+						<TD nowrap align="center">&nbsp;</TD>
+					</TR>
+				</TABLE>
+													<div CLASS='pagebreak' style="visibility:hidden">&nbsp;</DIV>
+												<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD align="center"><H3>Residential Client Detail Report</H3></TD>
+					</TR>
+											<TR>
+							<TD>Listings as of 05/26/08 at 6:24pm</TD>
+						</TR>
+				</TABLE>
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD colspan="2">
+							<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD>
+										<TABLE  border="0" width="100%" cellspacing="0" cellpadding="0">
+											<TR>
+												<TD nowrap width="20%"><B>Lot:&nbsp;</B></TD>
+												<TD nowrap width="20%"><B>Unit #:&nbsp;</B></TD>
+												<TD nowrap width="20%"><B>22629 143rd Ave SE&nbsp;Snohomish&nbsp;98296</B></TD>
+												<TD nowrap width="20%"><B></B></TD>
+																									<TD nowrap align="right" width="25%" color="Blue"><A href="http://locsearch.nwmls.com//ReturnMap.aspx?hidMLS=NWML&VHW=47.791570:-122.039362:.25:&Z=4&H=300&W=400&PP=47.791570:-122.039362:1:028064058" target=Window><FONT face="arial" size="1" color="blue"><B>See Map</B></FONT></A></TD>
+																							</TR>
+										</TABLE>
+									</TD>
+								</TR>
+							</TABLE>
+						</TD>
+					</TR>
+					<TR>
+					<TD width="30%">
+						<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+								<TD nowrap valign="top" width="25%"><A href="javascript://#LookUp" onclick="javascript:var myWidth = 400 + 40;var myHeight = myWidth * .75;var myTop = (window.screen.height - myHeight)/2;var myLeft = (window.screen.width - myWidth)/2;var oPictureWindow=window.open('http://locmedia.nwmls.com/DO_NOT_LINK/bigphoto/058/28064058.jpg?tsp=20080512152726', 'newWin', 'menubar=no,toolbar=no,resizable=yes,directories=no,scrollbars=yes,status=no,height=' + myHeight + ',width=' + myWidth + ',left=' + myLeft + ',top=' + myTop);oPictureWindow.focus();"><IMG width="300" height="200" src="http://locmedia.nwmls.com/DO_NOT_LINK/bigphoto/058/28064058.jpg?tsp=20080512152726" border="0"></A></TD>
+							</TR>
+																			<TR height="20">
+								<TD nowrap width="20%"><A href="/scripts/mgrqispi.dll?APPNAME=Locator&PRGNAME=MLSPictureDescriptions&ARGUMENTS=-N375489034,-N28064058,-AE"  target="window"><FONT face="arial" size="1" color="blue"><B>See Additional Pictures</B></FONT></A></TD>
+							</TR>
+												</TABLE>
+					</TD>
+					<TD>
+						<TABLE width="100%" cellspacing="0" cellpadding="0">
+							<TR>
+								<TD colspan="2">
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>Status</B></TD>
+														<TD>Active</TD>
+													</TR>
+													<TR>
+														<TD><B>Listing#</B></TD>
+														<TD> 28064058</TD>
+													</TR>
+													<TR>
+														<TD><B>County</B></TD>
+														<TD>Snohomish</TD>
+													</TR>
+												</TABLE>
+											</TD>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>Beds</B></TD>
+														<TD>3</TD>
+													</TR>
+													<TR>
+														<TD><B>Baths</B></TD>
+														<TD>  2.50</TD>
+													</TR>
+													<TR>
+														<TD><B>Fireplaces</B></TD>
+														<TD></TD>
+													</TR>
+												</TABLE>
+											</TD>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>List Price</B></TD>
+														<TD align="right">      525,000</TD>
+													</TR>
+													<TR>
+														<TD><B>Sold Price</B></TD>
+														<TD align="right"></TD>
+													</TR>
+													<TR>
+														<TD><B>Year Built</B></TD>
+														<TD align="right">2004</TD>
+													</TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+									<HR size="1">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Style</B></TD>
+											<TD>12-2 Story</TD>
+										</TR>
+										<TR>
+											<TD><B>Bldg Type.</B></TD>
+											<TD>Built On Lot</TD>
+										</TR>
+										<TR>
+											<TD><B>Covd Prkg.</B></TD>
+											<TD>4         Carport-Detached, Garage-Attac</TD>
+										</TR>
+										<TR>
+											<TD><B>Project</B></TD>
+											<TD></TD>
+										</TR>
+										<TR>
+											<TD><B>New Const.</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Appx. SQFT</B></TD>
+											<TD align="right">     1936</TD>
+										</TR>
+										<TR>
+											<TD><B>SQFT Src.</B></TD>
+											<TD align="right">Metroscan</TD>
+										</TR>
+										<TR>
+											<TD><B>Acreage</B></TD>
+											<TD align="right">    1.000</TD>
+										</TR>
+										<TR>
+											<TD><B>Lot Size</B></TD>
+											<TD align="right">    43560</TD>
+										</TR>
+										<TR>
+											<TD></TD>
+											<TD align="right">140 x 249</TD>
+										</TR>
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD colspan="2">
+									<TABLE></TABLE>
+									<HR size="1">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD colspan="2"><B>School Information:</B></TD>
+										</TR>
+										<TR>
+											<TD nowrap><B>School District</B></TD>
+											<TD>Monroe</TD>
+										</TR>
+										<TR>
+											<TD><B>Elementary</B></TD>
+											<TD></TD>
+										</TR>
+										<TR>
+											<TD><B>Jr. High</B></TD>
+											<TD></TD>
+										</TR>
+										<TR>
+											<TD><B>High School</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Area</B></TD>
+											<TD>610</TD>
+										</TR>
+										<TR>
+											<TD><B>Community</B></TD>
+											<TD>Echo Lake</TD>
+										</TR>
+										<TR>
+											<TD><B>Map:</B></TD>
+											<TD>478</TD>
+										</TR>
+										<TR>
+											<TD><B>Grid:</B></TD>
+											<TD>A-2</TD>
+										</TR>
+										<TR>
+											<TD><B>Pool</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+					</TD>
+				</TABLE>
+				<HRsize="1">
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD width="20%">
+							<TABLE width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD colspan="4" align="center"><B><U>Room Locations</U></B></TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD><B>L</B></TD>
+									<TD><B>M</B></TD>
+									<TD><B>U</B></TD>
+								</TR>
+								<TR>
+									<TD><B>Bedrooms</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>3</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (Full)</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>1</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (3/4)</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>1</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (1/2)</B></TD>
+									<TD></TD>
+									<TD>1</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Dining</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Living</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Kitchen</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>KtnEatSp</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Master</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>X</TD>
+								</TR>
+								<TR>
+									<TD><B>Family</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Rec. Room</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Den/Office</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Fireplace</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Utility</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>ExFinRoom</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Entry</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Bonus Room</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+							</TABLE>
+						</TD>
+						<TD>
+							<TABLE width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD align="center" colspan="4"><B><U>Property Details</U></B></TD>
+								</TR>
+								<TR>
+									<TD><B>Heating/Cooling</B></TD>
+									<TD colspan="5">Forced Air, Heat Pump</TD>
+								</TR>
+								<TR>
+									<TD><B>Energy Source</B></TD>
+									<TD colspan="5">Electric</TD>
+								</TR>
+								<TR>
+									<TD><B>Terms</B></TD>
+									<TD colspan="5">Cash Out, Conventional, FHA, Owner Financing, See Remarks</TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>Exterior</B></TD>
+									<TD colspan="5">Cement Planked, Wood Products</TD>
+								</TR>
+								<TR>
+									<TD><B>Roof Type</B></TD>
+									<TD colspan="5">Composition</TD>
+								</TR>
+								<TR>
+									<TD><B>Water</B></TD>
+									<TD colspan="5">Shared Well</TD>
+								</TR>
+								<TR>
+									<TD><B>Sewer</B></TD>
+									<TD colspan="5">Septic</TD>
+								</TR>
+								<TR>
+									<TD><B>Floor Covering</B></TD>
+									<TD colspan="5">Hardwood, Vinyl, Wall to Wall Carpet</TD>
+								</TR>
+								<TR>
+									<TD><B>Appliances</B></TD>
+									<TD colspan="5">Dishwasher, Dryer, Range/Oven, Refrigerator, Washer</TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>View</B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>Basement</B></TD>
+									<TD colspan="5">None</TD>
+								</TR>
+								<TR>
+									<TD><B>Architecture</B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>Water Heater</B></TD>
+									<TD colspan="5">electric / garage</TD>
+								</TR>
+								<TR>
+									<TD><B>Lease Equip.</B></TD>
+									<TD colspan="5">none</TD>
+								</TR>
+																<TR>
+									<TD><B>ApprvAssry Unit</B></TD>
+									<TD></TD>
+									
+									<TD>&nbsp;</TD>
+									<TD>&nbsp;</TD>
+									<TD><B>Bus Route</B></TD>
+									<TD></TD>
+								</TR>
+																							</TABLE>
+						</TD>
+					</TR>
+				</TABLE>
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Tax Year</B></TD>
+						<TD>2007</TD>
+						<TD align="right"><B>Annual Taxes</B></TD>
+						<TD>3729</TD>
+						<TD align="right"><B>Sr. Exemption</B></TD>
+						<TD>No</TD>
+						<TD align="right"><B>Homeowner Dues</B></TD>
+						<TD></TD>
+						<TD align="right"><B>Monthly Rent</B></TD>
+						<TD></TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Directions :&nbsp;</B>From 522, east on Echo Lake Road, left on Lost Lake Road, right on 138th, left on 228th, left on 143rd Ave SE.</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Interior Features :&nbsp;</B>Bath Off Master, Built-In Vacuum, Dining Room, Dble Pane/Strm Windw, French Doors, High Tech Cabling, Security System, Walk-in Closet, Wired for Generator</TD>
+					</TR>
+				</TABLE>
+				<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Site Features :&nbsp;</B>Barn, Cabana/Gazebo, Cable TV, Fenced-Partially, Green House, Outbuildings, Patio, RV Parking, Shop</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Marketing Remarks :&nbsp;</B>Custom built home, full of special features-beautiful millwork, 6 panel doors, rounded corners, air conditioning,just to name a few. The setting is exceptional, w/bridges across the creek, gazebo, greenhouse, barn, full hookup RV pkg. Spacious, pleasant living & dining rooms. The master suite is luxurious, with soothing outlook, walk-in closet & large bath. Attached garage, detached carport, covered RV parking & quiet,dead end street. The sellers will carry back 10% to help with your financing!</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellpadding="0" cellspacing="0">
+					<TR>
+						<TD nowrap align="center">Shannon Campbell  / Lake & Company</TD>
+					</TR>
+					<TR>
+						<TD nowrap align="center">Lot Sizes And Square Footage Are Estimates.</TD>
+					</TR>
+					<TR>
+						<TD  align="center">Information From Reliable Sources, But Not Guaranteed.<BR>Copyright</A> &copy;2008 <A name="trans">Rapattoni Corporation. All rights reserved.</A></TD>
+					</TR>
+					<TR>
+						<TD nowrap align="center">&nbsp;</TD>
+					</TR>
+				</TABLE>
+													<div CLASS='pagebreak' style="visibility:hidden">&nbsp;</DIV>
+												<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD align="center"><H3>Residential Client Detail Report</H3></TD>
+					</TR>
+											<TR>
+							<TD>Listings as of 05/26/08 at 6:24pm</TD>
+						</TR>
+				</TABLE>
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD colspan="2">
+							<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD>
+										<TABLE  border="0" width="100%" cellspacing="0" cellpadding="0">
+											<TR>
+												<TD nowrap width="20%"><B>Lot:&nbsp;</B></TD>
+												<TD nowrap width="20%"><B>Unit #:&nbsp;</B></TD>
+												<TD nowrap width="20%"><B>23411 Cherry Valley Rd&nbsp;Monroe&nbsp;98272</B></TD>
+												<TD nowrap width="20%"><B></B></TD>
+																									<TD nowrap align="right" width="25%" color="Blue"><A href="http://locsearch.nwmls.com//ReturnMap.aspx?hidMLS=NWML&VHW=47.784641:-121.967910:.25:&Z=4&H=300&W=400&PP=47.784641:-121.967910:1:028036037" target=Window><FONT face="arial" size="1" color="blue"><B>See Map</B></FONT></A></TD>
+																							</TR>
+										</TABLE>
+									</TD>
+								</TR>
+							</TABLE>
+						</TD>
+					</TR>
+					<TR>
+					<TD width="30%">
+						<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+								<TD nowrap valign="top" width="25%"><A href="javascript://#LookUp" onclick="javascript:var myWidth = 400 + 40;var myHeight = myWidth * .75;var myTop = (window.screen.height - myHeight)/2;var myLeft = (window.screen.width - myWidth)/2;var oPictureWindow=window.open('http://locmedia.nwmls.com/DO_NOT_LINK/bigphoto/037/28036037.jpg?tsp=20080522171838', 'newWin', 'menubar=no,toolbar=no,resizable=yes,directories=no,scrollbars=yes,status=no,height=' + myHeight + ',width=' + myWidth + ',left=' + myLeft + ',top=' + myTop);oPictureWindow.focus();"><IMG width="300" height="188" src="http://locmedia.nwmls.com/DO_NOT_LINK/bigphoto/037/28036037.jpg?tsp=20080522171838" border="0"></A></TD>
+							</TR>
+																			<TR height="20">
+								<TD nowrap width="20%"><A href="/scripts/mgrqispi.dll?APPNAME=Locator&PRGNAME=MLSPictureDescriptions&ARGUMENTS=-N375489034,-N28036037,-AE"  target="window"><FONT face="arial" size="1" color="blue"><B>See Additional Pictures</B></FONT></A></TD>
+							</TR>
+												</TABLE>
+					</TD>
+					<TD>
+						<TABLE width="100%" cellspacing="0" cellpadding="0">
+							<TR>
+								<TD colspan="2">
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>Status</B></TD>
+														<TD>Active</TD>
+													</TR>
+													<TR>
+														<TD><B>Listing#</B></TD>
+														<TD> 28036037</TD>
+													</TR>
+													<TR>
+														<TD><B>County</B></TD>
+														<TD>Snohomish</TD>
+													</TR>
+												</TABLE>
+											</TD>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>Beds</B></TD>
+														<TD>3</TD>
+													</TR>
+													<TR>
+														<TD><B>Baths</B></TD>
+														<TD>  2.50</TD>
+													</TR>
+													<TR>
+														<TD><B>Fireplaces</B></TD>
+														<TD>1</TD>
+													</TR>
+												</TABLE>
+											</TD>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>List Price</B></TD>
+														<TD align="right">      559,000</TD>
+													</TR>
+													<TR>
+														<TD><B>Sold Price</B></TD>
+														<TD align="right"></TD>
+													</TR>
+													<TR>
+														<TD><B>Year Built</B></TD>
+														<TD align="right">2008</TD>
+													</TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+									<HR size="1">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Style</B></TD>
+											<TD>12-2 Story</TD>
+										</TR>
+										<TR>
+											<TD><B>Bldg Type.</B></TD>
+											<TD>Built On Lot</TD>
+										</TR>
+										<TR>
+											<TD><B>Covd Prkg.</B></TD>
+											<TD>2         Garage-Attached</TD>
+										</TR>
+										<TR>
+											<TD><B>Project</B></TD>
+											<TD></TD>
+										</TR>
+										<TR>
+											<TD><B>New Const.</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Appx. SQFT</B></TD>
+											<TD align="right">     2244</TD>
+										</TR>
+										<TR>
+											<TD><B>SQFT Src.</B></TD>
+											<TD align="right">appraisal</TD>
+										</TR>
+										<TR>
+											<TD><B>Acreage</B></TD>
+											<TD align="right">    5.000</TD>
+										</TR>
+										<TR>
+											<TD><B>Lot Size</B></TD>
+											<TD align="right">   217800</TD>
+										</TR>
+										<TR>
+											<TD></TD>
+											<TD align="right"></TD>
+										</TR>
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD colspan="2">
+									<TABLE></TABLE>
+									<HR size="1">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD colspan="2"><B>School Information:</B></TD>
+										</TR>
+										<TR>
+											<TD nowrap><B>School District</B></TD>
+											<TD>Monroe</TD>
+										</TR>
+										<TR>
+											<TD><B>Elementary</B></TD>
+											<TD></TD>
+										</TR>
+										<TR>
+											<TD><B>Jr. High</B></TD>
+											<TD></TD>
+										</TR>
+										<TR>
+											<TD><B>High School</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Area</B></TD>
+											<TD>610</TD>
+										</TR>
+										<TR>
+											<TD><B>Community</B></TD>
+											<TD>High Rock</TD>
+										</TR>
+										<TR>
+											<TD><B>Map:</B></TD>
+											<TD>478</TD>
+										</TR>
+										<TR>
+											<TD><B>Grid:</B></TD>
+											<TD>H-2</TD>
+										</TR>
+										<TR>
+											<TD><B>Pool</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+					</TD>
+				</TABLE>
+				<HRsize="1">
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD width="20%">
+							<TABLE width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD colspan="4" align="center"><B><U>Room Locations</U></B></TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD><B>L</B></TD>
+									<TD><B>M</B></TD>
+									<TD><B>U</B></TD>
+								</TR>
+								<TR>
+									<TD><B>Bedrooms</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>3</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (Full)</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>2</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (3/4)</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (1/2)</B></TD>
+									<TD></TD>
+									<TD>1</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Dining</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Living</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Kitchen</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>KtnEatSp</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Master</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Family</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Rec. Room</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Den/Office</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Fireplace</B></TD>
+									<TD></TD>
+									<TD>1</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Utility</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>ExFinRoom</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Entry</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Bonus Room</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+							</TABLE>
+						</TD>
+						<TD>
+							<TABLE width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD align="center" colspan="4"><B><U>Property Details</U></B></TD>
+								</TR>
+								<TR>
+									<TD><B>Heating/Cooling</B></TD>
+									<TD colspan="5">Forced Air</TD>
+								</TR>
+								<TR>
+									<TD><B>Energy Source</B></TD>
+									<TD colspan="5">Electric</TD>
+								</TR>
+								<TR>
+									<TD><B>Terms</B></TD>
+									<TD colspan="5">Cash Out, Conventional</TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>Exterior</B></TD>
+									<TD colspan="5">Cement Planked, Wood Products</TD>
+								</TR>
+								<TR>
+									<TD><B>Roof Type</B></TD>
+									<TD colspan="5">Composition</TD>
+								</TR>
+								<TR>
+									<TD><B>Water</B></TD>
+									<TD colspan="5">Individual Well</TD>
+								</TR>
+								<TR>
+									<TD><B>Sewer</B></TD>
+									<TD colspan="5">Septic</TD>
+								</TR>
+								<TR>
+									<TD><B>Floor Covering</B></TD>
+									<TD colspan="5">Ceramic Tile, Hardwood, Wall to Wall Carpet</TD>
+								</TR>
+								<TR>
+									<TD><B>Appliances</B></TD>
+									<TD colspan="5">Dishwasher, Range/Oven</TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>View</B></TD>
+									<TD colspan="5">City, Mountain, Territorial</TD>
+								</TR>
+								<TR>
+									<TD><B>Basement</B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>Architecture</B></TD>
+									<TD colspan="5">Craftsman</TD>
+								</TR>
+								<TR>
+									<TD><B>Water Heater</B></TD>
+									<TD colspan="5">elect in crawl space</TD>
+								</TR>
+								<TR>
+									<TD><B>Lease Equip.</B></TD>
+									<TD colspan="5">propane tank</TD>
+								</TR>
+																<TR>
+									<TD><B>ApprvAssry Unit</B></TD>
+									<TD></TD>
+									
+									<TD>&nbsp;</TD>
+									<TD>&nbsp;</TD>
+									<TD><B>Bus Route</B></TD>
+									<TD>'</TD>
+								</TR>
+																									<TR>
+										<TD><B>Community Features</B></TD>
+										<TD colspan="5">CCRs</TD>
+									</TR>
+															</TABLE>
+						</TD>
+					</TR>
+				</TABLE>
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Tax Year</B></TD>
+						<TD>2007</TD>
+						<TD align="right"><B>Annual Taxes</B></TD>
+						<TD>2700</TD>
+						<TD align="right"><B>Sr. Exemption</B></TD>
+						<TD>No</TD>
+						<TD align="right"><B>Homeowner Dues</B></TD>
+						<TD></TD>
+						<TD align="right"><B>Monthly Rent</B></TD>
+						<TD></TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Directions :&nbsp;</B>203 to Cherry Valley Rd.(Snohomish Cty)3rd right.  Go up the hill do not turn.  Property will be on the left.</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Interior Features :&nbsp;</B>Bath Off Master, Built-In Vacuum, Ceiling Fan(s), Dining Room, Dble Pane/Strm Windw, Security System, Vaulted Ceilings, Walk-in Closet, Walk In Pantry</TD>
+					</TR>
+				</TABLE>
+				<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Site Features :&nbsp;</B>Deck, Fenced-Partially, Patio, Propane</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Marketing Remarks :&nbsp;</B>Beautiful NEW CONSTRUCTION home on 5 acres in an excellent quiet location.  Come home to the simple life in the country. Enjoy large covered porch and open decks, large patio off kitchen.  Kitchen has custom cabinets and walk through butler doored pantry to dining room. Stainless double convection oven in open well kitchen. Master bedroom with large master bath, walk in closet, two headed shower and deep soaking tub. Sit on the porch and listen to brook nearby.3 bdrms plus office/den. storage</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellpadding="0" cellspacing="0">
+					<TR>
+						<TD nowrap align="center">Shannon Campbell  / Lake & Company</TD>
+					</TR>
+					<TR>
+						<TD nowrap align="center">Lot Sizes And Square Footage Are Estimates.</TD>
+					</TR>
+					<TR>
+						<TD  align="center">Information From Reliable Sources, But Not Guaranteed.<BR>Copyright</A> &copy;2008 <A name="trans">Rapattoni Corporation. All rights reserved.</A></TD>
+					</TR>
+					<TR>
+						<TD nowrap align="center">&nbsp;</TD>
+					</TR>
+				</TABLE>
+													<div CLASS='pagebreak' style="visibility:hidden">&nbsp;</DIV>
+												<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD align="center"><H3>Residential Client Detail Report</H3></TD>
+					</TR>
+											<TR>
+							<TD>Listings as of 05/26/08 at 6:24pm</TD>
+						</TR>
+				</TABLE>
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD colspan="2">
+							<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD>
+										<TABLE  border="0" width="100%" cellspacing="0" cellpadding="0">
+											<TR>
+												<TD nowrap width="20%"><B>Lot:&nbsp;</B></TD>
+												<TD nowrap width="20%"><B>Unit #:&nbsp;</B></TD>
+												<TD nowrap width="20%"><B>18724 Snohomish Ave&nbsp;Snohomish&nbsp;98296</B></TD>
+												<TD nowrap width="20%"><B></B></TD>
+																									<TD nowrap align="right" width="25%" color="Blue"><A href="http://locsearch.nwmls.com//ReturnMap.aspx?hidMLS=NWML&VHW=47.827099:-122.132612:.25:&Z=4&H=300&W=400&PP=47.827099:-122.132612:1:028006212" target=Window><FONT face="arial" size="1" color="blue"><B>See Map</B></FONT></A></TD>
+																							</TR>
+										</TABLE>
+									</TD>
+								</TR>
+							</TABLE>
+						</TD>
+					</TR>
+					<TR>
+					<TD width="30%">
+						<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+								<TD nowrap valign="top" width="25%"><A href="javascript://#LookUp" onclick="javascript:var myWidth = 400 + 40;var myHeight = myWidth * .75;var myTop = (window.screen.height - myHeight)/2;var myLeft = (window.screen.width - myWidth)/2;var oPictureWindow=window.open('http://locmedia.nwmls.com/DO_NOT_LINK/bigphoto/212/28006212.jpg?tsp=20080520155350', 'newWin', 'menubar=no,toolbar=no,resizable=yes,directories=no,scrollbars=yes,status=no,height=' + myHeight + ',width=' + myWidth + ',left=' + myLeft + ',top=' + myTop);oPictureWindow.focus();"><IMG width="300" height="225" src="http://locmedia.nwmls.com/DO_NOT_LINK/bigphoto/212/28006212.jpg?tsp=20080520155350" border="0"></A></TD>
+							</TR>
+																			<TR height="20">
+								<TD nowrap width="20%"><A href="/scripts/mgrqispi.dll?APPNAME=Locator&PRGNAME=MLSPictureDescriptions&ARGUMENTS=-N375489034,-N28006212,-AE"  target="window"><FONT face="arial" size="1" color="blue"><B>See Additional Pictures</B></FONT></A></TD>
+							</TR>
+												</TABLE>
+					</TD>
+					<TD>
+						<TABLE width="100%" cellspacing="0" cellpadding="0">
+							<TR>
+								<TD colspan="2">
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>Status</B></TD>
+														<TD>Active</TD>
+													</TR>
+													<TR>
+														<TD><B>Listing#</B></TD>
+														<TD> 28006212</TD>
+													</TR>
+													<TR>
+														<TD><B>County</B></TD>
+														<TD>Snohomish</TD>
+													</TR>
+												</TABLE>
+											</TD>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>Beds</B></TD>
+														<TD>4</TD>
+													</TR>
+													<TR>
+														<TD><B>Baths</B></TD>
+														<TD>  2.50</TD>
+													</TR>
+													<TR>
+														<TD><B>Fireplaces</B></TD>
+														<TD>1</TD>
+													</TR>
+												</TABLE>
+											</TD>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>List Price</B></TD>
+														<TD align="right">      579,900</TD>
+													</TR>
+													<TR>
+														<TD><B>Sold Price</B></TD>
+														<TD align="right"></TD>
+													</TR>
+													<TR>
+														<TD><B>Year Built</B></TD>
+														<TD align="right">2002</TD>
+													</TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+									<HR size="1">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Style</B></TD>
+											<TD>12-2 Story</TD>
+										</TR>
+										<TR>
+											<TD><B>Bldg Type.</B></TD>
+											<TD>Built On Lot</TD>
+										</TR>
+										<TR>
+											<TD><B>Covd Prkg.</B></TD>
+											<TD>3         Garage-Attached, Off-Street Pa</TD>
+										</TR>
+										<TR>
+											<TD><B>Project</B></TD>
+											<TD></TD>
+										</TR>
+										<TR>
+											<TD><B>New Const.</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Appx. SQFT</B></TD>
+											<TD align="right">     2528</TD>
+										</TR>
+										<TR>
+											<TD><B>SQFT Src.</B></TD>
+											<TD align="right">SCR</TD>
+										</TR>
+										<TR>
+											<TD><B>Acreage</B></TD>
+											<TD align="right">    2.160</TD>
+										</TR>
+										<TR>
+											<TD><B>Lot Size</B></TD>
+											<TD align="right">    94090</TD>
+										</TR>
+										<TR>
+											<TD></TD>
+											<TD align="right"></TD>
+										</TR>
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD colspan="2">
+									<TABLE></TABLE>
+									<HR size="1">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD colspan="2"><B>School Information:</B></TD>
+										</TR>
+										<TR>
+											<TD nowrap><B>School District</B></TD>
+											<TD>Snohomish</TD>
+										</TR>
+										<TR>
+											<TD><B>Elementary</B></TD>
+											<TD>Cathcart Elem</TD>
+										</TR>
+										<TR>
+											<TD><B>Jr. High</B></TD>
+											<TD>Buyer To Verify</TD>
+										</TR>
+										<TR>
+											<TD><B>High School</B></TD>
+											<TD>Snohomish High</TD>
+										</TR>
+									</TABLE>
+								</TD>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Area</B></TD>
+											<TD>610</TD>
+										</TR>
+										<TR>
+											<TD><B>Community</B></TD>
+											<TD>Clearview</TD>
+										</TR>
+										<TR>
+											<TD><B>Map:</B></TD>
+											<TD>457</TD>
+										</TR>
+										<TR>
+											<TD><B>Grid:</B></TD>
+											<TD>B-4</TD>
+										</TR>
+										<TR>
+											<TD><B>Pool</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+					</TD>
+				</TABLE>
+				<HRsize="1">
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD width="20%">
+							<TABLE width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD colspan="4" align="center"><B><U>Room Locations</U></B></TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD><B>L</B></TD>
+									<TD><B>M</B></TD>
+									<TD><B>U</B></TD>
+								</TR>
+								<TR>
+									<TD><B>Bedrooms</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>4</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (Full)</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>2</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (3/4)</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (1/2)</B></TD>
+									<TD>1</TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Dining</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Living</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Kitchen</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>KtnEatSp</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Master</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>X</TD>
+								</TR>
+								<TR>
+									<TD><B>Family</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Rec. Room</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Den/Office</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Fireplace</B></TD>
+									<TD></TD>
+									<TD>1</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Utility</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>X</TD>
+								</TR>
+								<TR>
+									<TD><B>ExFinRoom</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Entry</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Bonus Room</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+							</TABLE>
+						</TD>
+						<TD>
+							<TABLE width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD align="center" colspan="4"><B><U>Property Details</U></B></TD>
+								</TR>
+								<TR>
+									<TD><B>Heating/Cooling</B></TD>
+									<TD colspan="5">Forced Air</TD>
+								</TR>
+								<TR>
+									<TD><B>Energy Source</B></TD>
+									<TD colspan="5">Natural Gas</TD>
+								</TR>
+								<TR>
+									<TD><B>Terms</B></TD>
+									<TD colspan="5">Cash Out, Conventional</TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>Exterior</B></TD>
+									<TD colspan="5">Cement Planked, Stone, Wood</TD>
+								</TR>
+								<TR>
+									<TD><B>Roof Type</B></TD>
+									<TD colspan="5">Composition</TD>
+								</TR>
+								<TR>
+									<TD><B>Water</B></TD>
+									<TD colspan="5">Public</TD>
+								</TR>
+								<TR>
+									<TD><B>Sewer</B></TD>
+									<TD colspan="5">Septic</TD>
+								</TR>
+								<TR>
+									<TD><B>Floor Covering</B></TD>
+									<TD colspan="5">Hardwood, Vinyl, Wall to Wall Carpet</TD>
+								</TR>
+								<TR>
+									<TD><B>Appliances</B></TD>
+									<TD colspan="5">Dishwasher, Dryer, Garbage Disposal, Microwave, Range/Oven, Refrigerator, Washer</TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>View</B></TD>
+									<TD colspan="5">Territorial</TD>
+								</TR>
+								<TR>
+									<TD><B>Basement</B></TD>
+									<TD colspan="5">None</TD>
+								</TR>
+								<TR>
+									<TD><B>Architecture</B></TD>
+									<TD colspan="5">Craftsman</TD>
+								</TR>
+								<TR>
+									<TD><B>Water Heater</B></TD>
+									<TD colspan="5">Gas/garage</TD>
+								</TR>
+								<TR>
+									<TD><B>Lease Equip.</B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+																<TR>
+									<TD><B>ApprvAssry Unit</B></TD>
+									<TD></TD>
+									
+									<TD><B>Bus Line Nearby</B>&nbsp;</TD>
+									<TD>Yes&nbsp;</TD>
+									<TD><B>Bus Route</B></TD>
+									<TD>'</TD>
+								</TR>
+																							</TABLE>
+						</TD>
+					</TR>
+				</TABLE>
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Tax Year</B></TD>
+						<TD>2007</TD>
+						<TD align="right"><B>Annual Taxes</B></TD>
+						<TD>5922</TD>
+						<TD align="right"><B>Sr. Exemption</B></TD>
+						<TD>No</TD>
+						<TD align="right"><B>Homeowner Dues</B></TD>
+						<TD></TD>
+						<TD align="right"><B>Monthly Rent</B></TD>
+						<TD></TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Directions :&nbsp;</B>From Hwy. 9, turn west on 188th St., left on Snohomish Ave., 1st house on left. OR from SR-527 (Bothell-Everett Hwy), east on 180th St.,  right on Snohomish Avenue, house will be on right.</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Interior Features :&nbsp;</B>Bath Off Master, Dining Room, Dble Pane/Strm Windw, High Tech Cabling, Jetted/Soaking Tub, Walk-in Closet</TD>
+					</TR>
+				</TABLE>
+				<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Site Features :&nbsp;</B>Cable TV, Fenced-Fully, High Speed Internet, Nat. Gas Available, Patio, RV Parking</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Marketing Remarks :&nbsp;</B>Hurry and get this gem before the bank takes it!Well-maintained home on acreage in sought-after Clearview. White millwork in formal living & dining rooms; hardwood floors from 2-story entry thru to kitchen/eating nook. Family room opens to delightful kitchen. Relax in 5-pc. master bath w/soaking tub & double sink vanity & walk-in closet. Utility room on upper floor for ease in living. 4th bdrm oversized & could be bonus room. Large front lawn, fully-fenced backyard & wooded area for tranquility.</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellpadding="0" cellspacing="0">
+					<TR>
+						<TD nowrap align="center">Shannon Campbell  / Lake & Company</TD>
+					</TR>
+					<TR>
+						<TD nowrap align="center">Lot Sizes And Square Footage Are Estimates.</TD>
+					</TR>
+					<TR>
+						<TD  align="center">Information From Reliable Sources, But Not Guaranteed.<BR>Copyright</A> &copy;2008 <A name="trans">Rapattoni Corporation. All rights reserved.</A></TD>
+					</TR>
+					<TR>
+						<TD nowrap align="center">&nbsp;</TD>
+					</TR>
+				</TABLE>
+													<div CLASS='pagebreak' style="visibility:hidden">&nbsp;</DIV>
+												<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD align="center"><H3>Residential Client Detail Report</H3></TD>
+					</TR>
+											<TR>
+							<TD>Listings as of 05/26/08 at 6:24pm</TD>
+						</TR>
+				</TABLE>
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD colspan="2">
+							<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD>
+										<TABLE  border="0" width="100%" cellspacing="0" cellpadding="0">
+											<TR>
+												<TD nowrap width="20%"><B>Lot:&nbsp;</B></TD>
+												<TD nowrap width="20%"><B>Unit #:&nbsp;</B></TD>
+												<TD nowrap width="20%"><B>16908 Mt Forest Blvd&nbsp;Monroe&nbsp;98272</B></TD>
+												<TD nowrap width="20%"><B></B></TD>
+																									<TD nowrap align="right" width="25%" color="Blue"><A href="http://locsearch.nwmls.com//ReturnMap.aspx?hidMLS=NWML&VHW=47.781318:-122.003872:.25:&Z=4&H=300&W=400&PP=47.781318:-122.003872:1:028053321" target=Window><FONT face="arial" size="1" color="blue"><B>See Map</B></FONT></A></TD>
+																							</TR>
+										</TABLE>
+									</TD>
+								</TR>
+							</TABLE>
+						</TD>
+					</TR>
+					<TR>
+					<TD width="30%">
+						<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+								<TD nowrap valign="top" width="25%"><A href="javascript://#LookUp" onclick="javascript:var myWidth = 400 + 40;var myHeight = myWidth * .75;var myTop = (window.screen.height - myHeight)/2;var myLeft = (window.screen.width - myWidth)/2;var oPictureWindow=window.open('http://locmedia.nwmls.com/DO_NOT_LINK/bigphoto/321/28053321.jpg?tsp=20080427084949', 'newWin', 'menubar=no,toolbar=no,resizable=yes,directories=no,scrollbars=yes,status=no,height=' + myHeight + ',width=' + myWidth + ',left=' + myLeft + ',top=' + myTop);oPictureWindow.focus();"><IMG width="300" height="225" src="http://locmedia.nwmls.com/DO_NOT_LINK/bigphoto/321/28053321.jpg?tsp=20080427084949" border="0"></A></TD>
+							</TR>
+																			<TR height="20">
+								<TD nowrap width="20%"><A href="/scripts/mgrqispi.dll?APPNAME=Locator&PRGNAME=MLSPictureDescriptions&ARGUMENTS=-N375489034,-N28053321,-AE"  target="window"><FONT face="arial" size="1" color="blue"><B>See Additional Pictures</B></FONT></A></TD>
+							</TR>
+												</TABLE>
+					</TD>
+					<TD>
+						<TABLE width="100%" cellspacing="0" cellpadding="0">
+							<TR>
+								<TD colspan="2">
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>Status</B></TD>
+														<TD>Active</TD>
+													</TR>
+													<TR>
+														<TD><B>Listing#</B></TD>
+														<TD> 28053321</TD>
+													</TR>
+													<TR>
+														<TD><B>County</B></TD>
+														<TD>Snohomish</TD>
+													</TR>
+												</TABLE>
+											</TD>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>Beds</B></TD>
+														<TD>4</TD>
+													</TR>
+													<TR>
+														<TD><B>Baths</B></TD>
+														<TD>  3.50</TD>
+													</TR>
+													<TR>
+														<TD><B>Fireplaces</B></TD>
+														<TD>1</TD>
+													</TR>
+												</TABLE>
+											</TD>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>List Price</B></TD>
+														<TD align="right">      599,950</TD>
+													</TR>
+													<TR>
+														<TD><B>Sold Price</B></TD>
+														<TD align="right"></TD>
+													</TR>
+													<TR>
+														<TD><B>Year Built</B></TD>
+														<TD align="right">1991</TD>
+													</TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+									<HR size="1">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Style</B></TD>
+											<TD>18-2 Stories w/Bsmnt</TD>
+										</TR>
+										<TR>
+											<TD><B>Bldg Type.</B></TD>
+											<TD>Built On Lot</TD>
+										</TR>
+										<TR>
+											<TD><B>Covd Prkg.</B></TD>
+											<TD>2         Garage-Attached</TD>
+										</TR>
+										<TR>
+											<TD><B>Project</B></TD>
+											<TD></TD>
+										</TR>
+										<TR>
+											<TD><B>New Const.</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Appx. SQFT</B></TD>
+											<TD align="right">     2880</TD>
+										</TR>
+										<TR>
+											<TD><B>SQFT Src.</B></TD>
+											<TD align="right"></TD>
+										</TR>
+										<TR>
+											<TD><B>Acreage</B></TD>
+											<TD align="right">    1.900</TD>
+										</TR>
+										<TR>
+											<TD><B>Lot Size</B></TD>
+											<TD align="right">    82764</TD>
+										</TR>
+										<TR>
+											<TD></TD>
+											<TD align="right"></TD>
+										</TR>
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD colspan="2">
+									<TABLE></TABLE>
+									<HR size="1">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD colspan="2"><B>School Information:</B></TD>
+										</TR>
+										<TR>
+											<TD nowrap><B>School District</B></TD>
+											<TD>Monroe</TD>
+										</TR>
+										<TR>
+											<TD><B>Elementary</B></TD>
+											<TD></TD>
+										</TR>
+										<TR>
+											<TD><B>Jr. High</B></TD>
+											<TD></TD>
+										</TR>
+										<TR>
+											<TD><B>High School</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Area</B></TD>
+											<TD>610</TD>
+										</TR>
+										<TR>
+											<TD><B>Community</B></TD>
+											<TD>Woodinville</TD>
+										</TR>
+										<TR>
+											<TD><B>Map:</B></TD>
+											<TD>478</TD>
+										</TR>
+										<TR>
+											<TD><B>Grid:</B></TD>
+											<TD>E-3</TD>
+										</TR>
+										<TR>
+											<TD><B>Pool</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+					</TD>
+				</TABLE>
+				<HRsize="1">
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD width="20%">
+							<TABLE width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD colspan="4" align="center"><B><U>Room Locations</U></B></TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD><B>L</B></TD>
+									<TD><B>M</B></TD>
+									<TD><B>U</B></TD>
+								</TR>
+								<TR>
+									<TD><B>Bedrooms</B></TD>
+									<TD>1</TD>
+									<TD></TD>
+									<TD>3</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (Full)</B></TD>
+									<TD>1</TD>
+									<TD></TD>
+									<TD>2</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (3/4)</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (1/2)</B></TD>
+									<TD></TD>
+									<TD>1</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Dining</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Living</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Kitchen</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>KtnEatSp</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Master</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD>X</TD>
+								</TR>
+								<TR>
+									<TD><B>Family</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Rec. Room</B></TD>
+									<TD>X</TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Den/Office</B></TD>
+									<TD>X</TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Fireplace</B></TD>
+									<TD></TD>
+									<TD>1</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Utility</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>ExFinRoom</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Entry</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Bonus Room</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+							</TABLE>
+						</TD>
+						<TD>
+							<TABLE width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD align="center" colspan="4"><B><U>Property Details</U></B></TD>
+								</TR>
+								<TR>
+									<TD><B>Heating/Cooling</B></TD>
+									<TD colspan="5">Forced Air, Stove/Free Stdg</TD>
+								</TR>
+								<TR>
+									<TD><B>Energy Source</B></TD>
+									<TD colspan="5">Electric</TD>
+								</TR>
+								<TR>
+									<TD><B>Terms</B></TD>
+									<TD colspan="5">Cash Out, Conventional</TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>Exterior</B></TD>
+									<TD colspan="5">Wood</TD>
+								</TR>
+								<TR>
+									<TD><B>Roof Type</B></TD>
+									<TD colspan="5">Composition</TD>
+								</TR>
+								<TR>
+									<TD><B>Water</B></TD>
+									<TD colspan="5">Public</TD>
+								</TR>
+								<TR>
+									<TD><B>Sewer</B></TD>
+									<TD colspan="5">Septic</TD>
+								</TR>
+								<TR>
+									<TD><B>Floor Covering</B></TD>
+									<TD colspan="5">Hardwood, Vinyl, Wall to Wall Carpet</TD>
+								</TR>
+								<TR>
+									<TD><B>Appliances</B></TD>
+									<TD colspan="5">Dishwasher, Garbage Disposal, Microwave, Range/Oven, Refrigerator</TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>View</B></TD>
+									<TD colspan="5">Mountain, Territorial</TD>
+								</TR>
+								<TR>
+									<TD><B>Basement</B></TD>
+									<TD colspan="5">Daylight</TD>
+								</TR>
+								<TR>
+									<TD><B>Architecture</B></TD>
+									<TD colspan="5">Contemporary</TD>
+								</TR>
+								<TR>
+									<TD><B>Water Heater</B></TD>
+									<TD colspan="5">Electric/Basement</TD>
+								</TR>
+								<TR>
+									<TD><B>Lease Equip.</B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+																<TR>
+									<TD><B>ApprvAssry Unit</B></TD>
+									<TD></TD>
+									
+									<TD>&nbsp;</TD>
+									<TD>&nbsp;</TD>
+									<TD><B>Bus Route</B></TD>
+									<TD></TD>
+								</TR>
+																							</TABLE>
+						</TD>
+					</TR>
+				</TABLE>
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Tax Year</B></TD>
+						<TD>2008</TD>
+						<TD align="right"><B>Annual Taxes</B></TD>
+						<TD>3920</TD>
+						<TD align="right"><B>Sr. Exemption</B></TD>
+						<TD>No</TD>
+						<TD align="right"><B>Homeowner Dues</B></TD>
+						<TD></TD>
+						<TD align="right"><B>Monthly Rent</B></TD>
+						<TD></TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Directions :&nbsp;</B>520 E to Avondale RD Ext, becomes Avondale Rd NE. Turn slight right onto NE Novelty Hill Rd. Turn left onto W Snoqualmie Valley Rd NE, becomes High Bridge Rd. Turn left onto MT Forest Blvd</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Interior Features :&nbsp;</B>Bath Off Master, Ceiling Fan(s), Dining Room, Dble Pane/Strm Windw, Skylights, Vaulted Ceilings, Walk-in Closet</TD>
+					</TR>
+				</TABLE>
+				<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Site Features :&nbsp;</B>Cable TV, Deck, Dog Run, High Speed Internet, Outbuildings</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Marketing Remarks :&nbsp;</B>Enjoy the private and serenity of this spacious well maintained home on a shy 2 acre manicured  lot. Features include vaulted ceilings, formal dining room, living rm w/wood burning fire place, beautiful kitchen w/eating area, den/office or 5th bedroom, Family and rec rooms. Take in the mountain & territorial views from the large deck. There is an aesthetic pond and fire pit. Easy microsoft/eastside commut.Only 5 min. to Duvall. This is a wonderful home. Discover the Mt Forest neighborhood.</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellpadding="0" cellspacing="0">
+					<TR>
+						<TD nowrap align="center">Shannon Campbell  / Lake & Company</TD>
+					</TR>
+					<TR>
+						<TD nowrap align="center">Lot Sizes And Square Footage Are Estimates.</TD>
+					</TR>
+					<TR>
+						<TD  align="center">Information From Reliable Sources, But Not Guaranteed.<BR>Copyright</A> &copy;2008 <A name="trans">Rapattoni Corporation. All rights reserved.</A></TD>
+					</TR>
+					<TR>
+						<TD nowrap align="center">&nbsp;</TD>
+					</TR>
+				</TABLE>
+													<div CLASS='pagebreak' style="visibility:hidden">&nbsp;</DIV>
+												<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD align="center"><H3>Residential Client Detail Report</H3></TD>
+					</TR>
+											<TR>
+							<TD>Listings as of 05/26/08 at 6:24pm</TD>
+						</TR>
+				</TABLE>
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD colspan="2">
+							<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD>
+										<TABLE  border="0" width="100%" cellspacing="0" cellpadding="0">
+											<TR>
+												<TD nowrap width="20%"><B>Lot:&nbsp;31</B></TD>
+												<TD nowrap width="20%"><B>Unit #:&nbsp;</B></TD>
+												<TD nowrap width="20%"><B>17319 265th Ave SE&nbsp;Monroe&nbsp;98272</B></TD>
+												<TD nowrap width="20%"><B></B></TD>
+																									<TD nowrap align="right" width="25%" color="Blue"></TD>
+																							</TR>
+										</TABLE>
+									</TD>
+								</TR>
+							</TABLE>
+						</TD>
+					</TR>
+					<TR>
+					<TD width="30%">
+						<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+								<TD nowrap valign="top" width="25%"><A href="javascript://#LookUp" onclick="javascript:var myWidth = 400 + 40;var myHeight = myWidth * .75;var myTop = (window.screen.height - myHeight)/2;var myLeft = (window.screen.width - myWidth)/2;var oPictureWindow=window.open('http://locmedia.nwmls.com/DO_NOT_LINK/bigphoto/444/28011444.jpg?tsp=20080215141208', 'newWin', 'menubar=no,toolbar=no,resizable=yes,directories=no,scrollbars=yes,status=no,height=' + myHeight + ',width=' + myWidth + ',left=' + myLeft + ',top=' + myTop);oPictureWindow.focus();"><IMG width="300" height="225" src="http://locmedia.nwmls.com/DO_NOT_LINK/bigphoto/444/28011444.jpg?tsp=20080215141208" border="0"></A></TD>
+							</TR>
+																			<TR height="20">
+								<TD nowrap width="20%"><A href="/scripts/mgrqispi.dll?APPNAME=Locator&PRGNAME=MLSPictureDescriptions&ARGUMENTS=-N375489034,-N28011444,-AE"  target="window"><FONT face="arial" size="1" color="blue"><B>See Additional Pictures</B></FONT></A></TD>
+							</TR>
+												</TABLE>
+					</TD>
+					<TD>
+						<TABLE width="100%" cellspacing="0" cellpadding="0">
+							<TR>
+								<TD colspan="2">
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>Status</B></TD>
+														<TD>Cancelled</TD>
+													</TR>
+													<TR>
+														<TD><B>Listing#</B></TD>
+														<TD> 28011444</TD>
+													</TR>
+													<TR>
+														<TD><B>County</B></TD>
+														<TD>Snohomish</TD>
+													</TR>
+												</TABLE>
+											</TD>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>Beds</B></TD>
+														<TD>4</TD>
+													</TR>
+													<TR>
+														<TD><B>Baths</B></TD>
+														<TD>  2.50</TD>
+													</TR>
+													<TR>
+														<TD><B>Fireplaces</B></TD>
+														<TD>1</TD>
+													</TR>
+												</TABLE>
+											</TD>
+											<TD>
+												<TABLE width="100%" cellspacing="0" cellpadding="0">
+													<TR>
+														<TD><B>List Price</B></TD>
+														<TD align="right">      495,000</TD>
+													</TR>
+													<TR>
+														<TD><B>Sold Price</B></TD>
+														<TD align="right"></TD>
+													</TR>
+													<TR>
+														<TD><B>Year Built</B></TD>
+														<TD align="right">2007</TD>
+													</TR>
+												</TABLE>
+											</TD>
+										</TR>
+									</TABLE>
+									<HR size="1">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Style</B></TD>
+											<TD>12-2 Story</TD>
+										</TR>
+										<TR>
+											<TD><B>Bldg Type.</B></TD>
+											<TD>Built On Lot</TD>
+										</TR>
+										<TR>
+											<TD><B>Covd Prkg.</B></TD>
+											<TD>2         Garage-Attached</TD>
+										</TR>
+										<TR>
+											<TD><B>Project</B></TD>
+											<TD>AFN#7903160222</TD>
+										</TR>
+										<TR>
+											<TD><B>New Const.</B></TD>
+											<TD>Completed</TD>
+										</TR>
+									</TABLE>
+								</TD>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Appx. SQFT</B></TD>
+											<TD align="right">     2868</TD>
+										</TR>
+										<TR>
+											<TD><B>SQFT Src.</B></TD>
+											<TD align="right">Building Permit</TD>
+										</TR>
+										<TR>
+											<TD><B>Acreage</B></TD>
+											<TD align="right">    5.000</TD>
+										</TR>
+										<TR>
+											<TD><B>Lot Size</B></TD>
+											<TD align="right">   217800</TD>
+										</TR>
+										<TR>
+											<TD></TD>
+											<TD align="right"></TD>
+										</TR>
+									</TABLE>
+								</TD>
+							</TR>
+							<TR>
+								<TD colspan="2">
+									<TABLE></TABLE>
+									<HR size="1">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD colspan="2"><B>School Information:</B></TD>
+										</TR>
+										<TR>
+											<TD nowrap><B>School District</B></TD>
+											<TD>Monroe</TD>
+										</TR>
+										<TR>
+											<TD><B>Elementary</B></TD>
+											<TD>Monroe Elem</TD>
+										</TR>
+										<TR>
+											<TD><B>Jr. High</B></TD>
+											<TD>Monroe Mid</TD>
+										</TR>
+										<TR>
+											<TD><B>High School</B></TD>
+											<TD>Monroe High</TD>
+										</TR>
+									</TABLE>
+								</TD>
+								<TD>
+									<TABLE width="100%" cellspacing="0" cellpadding="0">
+										<TR>
+											<TD><B>Area</B></TD>
+											<TD>610</TD>
+										</TR>
+										<TR>
+											<TD><B>Community</B></TD>
+											<TD>South Monroe</TD>
+										</TR>
+										<TR>
+											<TD><B>Map:</B></TD>
+											<TD>459</TD>
+										</TR>
+										<TR>
+											<TD><B>Grid:</B></TD>
+											<TD>G-2</TD>
+										</TR>
+										<TR>
+											<TD><B>Pool</B></TD>
+											<TD></TD>
+										</TR>
+									</TABLE>
+								</TD>
+							</TR>
+						</TABLE>
+					</TD>
+				</TABLE>
+				<HRsize="1">
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD width="20%">
+							<TABLE width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD colspan="4" align="center"><B><U>Room Locations</U></B></TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD><B>L</B></TD>
+									<TD><B>M</B></TD>
+									<TD><B>U</B></TD>
+								</TR>
+								<TR>
+									<TD><B>Bedrooms</B></TD>
+									<TD></TD>
+									<TD>1</TD>
+									<TD>3</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (Full)</B></TD>
+									<TD></TD>
+									<TD>1</TD>
+									<TD>1</TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (3/4)</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Baths (1/2)</B></TD>
+									<TD></TD>
+									<TD>1</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Dining</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Living</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Kitchen</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>KtnEatSp</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Master</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Family</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Rec. Room</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Den/Office</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Fireplace</B></TD>
+									<TD></TD>
+									<TD>1</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Utility</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>ExFinRoom</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Entry</B></TD>
+									<TD></TD>
+									<TD>X</TD>
+									<TD></TD>
+								</TR>
+								<TR>
+									<TD><B>Bonus Room</B></TD>
+									<TD></TD>
+									<TD></TD>
+									<TD></TD>
+								</TR>
+							</TABLE>
+						</TD>
+						<TD>
+							<TABLE width="100%" cellspacing="0" cellpadding="0">
+								<TR>
+									<TD align="center" colspan="4"><B><U>Property Details</U></B></TD>
+								</TR>
+								<TR>
+									<TD><B>Heating/Cooling</B></TD>
+									<TD colspan="5">Forced Air, Stove/Free Stdg</TD>
+								</TR>
+								<TR>
+									<TD><B>Energy Source</B></TD>
+									<TD colspan="5">Propane</TD>
+								</TR>
+								<TR>
+									<TD><B>Terms</B></TD>
+									<TD colspan="5">Cash Out, Conventional</TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>Exterior</B></TD>
+									<TD colspan="5">Wood</TD>
+								</TR>
+								<TR>
+									<TD><B>Roof Type</B></TD>
+									<TD colspan="5">Composition</TD>
+								</TR>
+								<TR>
+									<TD><B>Water</B></TD>
+									<TD colspan="5">Community</TD>
+								</TR>
+								<TR>
+									<TD><B>Sewer</B></TD>
+									<TD colspan="5">Septic</TD>
+								</TR>
+								<TR>
+									<TD><B>Floor Covering</B></TD>
+									<TD colspan="5">Ceramic Tile, Hardwood, Wall to Wall Carpet</TD>
+								</TR>
+								<TR>
+									<TD><B>Appliances</B></TD>
+									<TD colspan="5">Dishwasher, Garbage Disposal, Microwave, Range/Oven</TD>
+								</TR>
+								<TR>
+									<TD><B></B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+								<TR>
+									<TD><B>View</B></TD>
+									<TD colspan="5">Mountain, Territorial</TD>
+								</TR>
+								<TR>
+									<TD><B>Basement</B></TD>
+									<TD colspan="5">None</TD>
+								</TR>
+								<TR>
+									<TD><B>Architecture</B></TD>
+									<TD colspan="5">NW Contemporary</TD>
+								</TR>
+								<TR>
+									<TD><B>Water Heater</B></TD>
+									<TD colspan="5">Garage</TD>
+								</TR>
+								<TR>
+									<TD><B>Lease Equip.</B></TD>
+									<TD colspan="5"></TD>
+								</TR>
+																<TR>
+									<TD><B>ApprvAssry Unit</B></TD>
+									<TD></TD>
+									
+									<TD>&nbsp;</TD>
+									<TD>&nbsp;</TD>
+									<TD><B>Bus Route</B></TD>
+									<TD>'</TD>
+								</TR>
+																									<TR>
+										<TD><B>Community Features</B></TD>
+										<TD colspan="5">CCRs</TD>
+									</TR>
+															</TABLE>
+						</TD>
+					</TR>
+				</TABLE>
+				<TABLE width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Tax Year</B></TD>
+						<TD>2007</TD>
+						<TD align="right"><B>Annual Taxes</B></TD>
+						<TD>934</TD>
+						<TD align="right"><B>Sr. Exemption</B></TD>
+						<TD>No</TD>
+						<TD align="right"><B>Homeowner Dues</B></TD>
+						<TD></TD>
+						<TD align="right"><B>Monthly Rent</B></TD>
+						<TD></TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Directions :&nbsp;</B>From Monroe, take Ben Howard Rd 5 miles to 267th (Leisure Time Resort). Follow directionals, up hill take right at 174th, right at Y (256th Ave), house on right. Sign on Ben Howard, no sign at house.</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Interior Features :&nbsp;</B>Bath Off Master, Dining Room, Dble Pane/Strm Windw, Jetted/Soaking Tub, Walk-in Closet</TD>
+					</TR>
+				</TABLE>
+				<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Site Features :&nbsp;</B>Deck, Propane</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellspacing="0" cellpadding="0">
+					<TR>
+						<TD><B>Marketing Remarks :&nbsp;</B>Quality NEW CONST 4 bed plus office on 5 acres w/ amazing mtn view. Private serene setting w/ faint sound of creek below. Master on main w/5 piece bath, or 2nd master upstairs w/ bath. Home features open floor w/ 9' ceilings, open formal dining room, fireplace w/granite mantle, granite countertops, wood-wrapped windows (large windows throughout), stainless steel appliances, designer bath vanities, travertine tile & low maintenance yard. 5 mile scenic (river view) drive from Monroe.</TD>
+					</TR>
+				</TABLE>
+				<HR size="1">
+								<TABLE border="0" width="100%" cellpadding="0" cellspacing="0">
+					<TR>
+						<TD nowrap align="center">Shannon Campbell  / Lake & Company</TD>
+					</TR>
+					<TR>
+						<TD nowrap align="center">Lot Sizes And Square Footage Are Estimates.</TD>
+					</TR>
+					<TR>
+						<TD  align="center">Information From Reliable Sources, But Not Guaranteed.<BR>Copyright</A> &copy;2008 <A name="trans">Rapattoni Corporation. All rights reserved.</A></TD>
+					</TR>
+					<TR>
+						<TD nowrap align="center">&nbsp;</TD>
+					</TR>
+				</TABLE>
+																							</CENTER>
+	</BODY>
+</HTML>

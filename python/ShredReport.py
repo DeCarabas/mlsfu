@@ -51,6 +51,9 @@ def ShredReport(doc):
             nextInfo = firstInfo.nextSibling.nextSibling
             ShredMiniTable(nextInfo, 'Heating/Cooling', info)
 
+            pictureBlock = firstInfo.find(text='See Additional Pictures').parent.parent.parent
+            info['MorePictures'] = 'http://locator.nwmls.com' + pictureBlock['href']
+
             # Pull out the HTML for fun
             #
             details = str(reportStart)
